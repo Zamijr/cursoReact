@@ -1,0 +1,46 @@
+<script>
+    for (x = 0; x < 30000; x++) {
+        console.log(x);
+        document.getElementById("result").innerHTML = x;
+    }
+</script>
+<h3>Workers</h3>
+<p id="seguir">Seguir Trabajando</p>
+<p>Resultado Worker hasta 2999:
+    <output id="result"></output>
+</p>
+<button onclick="iniciaWorker()">Start Worker</button>
+<button onclick="pararWorker()">Stop Worker</button>
+
+<button onclick="seguirTrabajando()">SeguirTrabajando</button>
+<script>
+var w;
+
+function iniciaWorker() {
+    if (typeof (Worker) !== "undefined") {
+        if (typeof (w) == "undefined") {
+            w = new Worker("../js/ejemploWorker.js");
+        }
+        for (x = 0; x < 30000; x++) {
+            w.postMessage(x);
+                w.addEventListener('message', function (e) {
+                    document.getElementById('result').textContent = e.data;
+                });
+
+        }
+
+    } else {
+        document.getElementById("result").innerHTML = "Web Worker no soportado.";
+    }
+}
+
+function pararWorker() {
+    w.terminate();
+    w = undefined;
+}
+var incrementa=0;
+function seguirTrabajando(){
+    incrementa++;
+    document.getElementById('seguir').textContent = incrementa;
+}
+</script>

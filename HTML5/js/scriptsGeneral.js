@@ -38,6 +38,15 @@ $(document).ready(function () {
     $('#storage').click(function () {
         $("#contenidoPrincipal").load("paginas/storage.html");
     });
+    $('#cache').click(function () {
+        $("#contenidoPrincipal").load("paginas/cache.html");
+    });
+    $('#worker').click(function () {
+        $("#contenidoPrincipal").load("paginas/workers.html");
+    });
+    $('#webSockets').click(function () {
+        $("#contenidoPrincipal").load("paginas/webSockets.html");
+    });
 
 });
 
